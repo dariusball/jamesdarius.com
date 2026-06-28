@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f6f4ef;
+    --foreground: #3c3933;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Reduce motion for users who prefer it. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Thin, low-contrast section separator — keeps the page airy. */
+  .hairline {
+    @apply border-t border-stone-200;
+  }
+
+  /* Shared horizontal rhythm for section content. */
+  .container-x {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+  }
+}
