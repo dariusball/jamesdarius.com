@@ -1,51 +1,31 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
-interface FadeInProps {
-  children: ReactNode;
-  className?: string;
-  /** Stagger delay in seconds. */
-  delay?: number;
-  /** Render as a different element (defaults to div). */
-  as?: "div" | "section" | "li" | "article" | "span";
-}
-
-const variants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
 /**
- * Fades and slides its children up when they scroll into view.
- * Animation runs once and respects prefers-reduced-motion (handled in CSS).
+ * Subtle "fade + rise" reveal as content scrolls into view. Respects reduced
+ * motion automatically (framer-motion reads the user setting), keeping the
+ * site calm rather than gimmicky.
  */
 export default function FadeIn({
   children,
-  className,
   delay = 0,
-  as = "div",
-}: FadeInProps) {
-  const MotionTag = motion[as];
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   return (
-    <MotionTag
+    <motion.div
       className={className}
-      variants={variants}
-      custom={delay}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut", delay }}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }

@@ -1,53 +1,72 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Serif_JP } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { site } from "@/lib/site";
 
+// Clean, modern sans for body + UI.
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
 
-const notoSerifJp = Noto_Serif_JP({
+// Warm, characterful display serif for the name + headings.
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-noto-serif-jp",
+  variable: "--font-fraunces",
 });
 
-const siteUrl = "https://izumi.example.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "IZUMI 泉 — Biophilic Bathroom Retrofit",
-  description:
-    "IZUMI (泉) brings the calm of a Japanese garden into your bathroom. A no-plumbing, countertop water basin inspired by stone, water, and wabi-sabi.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — ${site.role}`,
+    template: `%s — ${site.name}`,
+  },
+  description: site.description,
   keywords: [
-    "biophilic design",
-    "Japanese garden",
-    "bathroom retrofit",
-    "wabi-sabi",
-    "countertop basin",
-    "IZUMI",
+    "James Darius Ball",
+    "Future Cities",
+    "National Building Museum",
+    "sustainability",
+    "built environment",
+    "public speaking",
+    "facilitation",
+    "Zoroastrian",
+    "yoga",
   ],
+  authors: [{ name: site.name, url: site.url }],
   openGraph: {
-    title: "IZUMI 泉 — Biophilic Bathroom Retrofit",
-    description:
-      "A no-plumbing, countertop water basin inspired by Japanese garden aesthetics. Join the waitlist.",
-    url: siteUrl,
-    siteName: "IZUMI",
+    title: `${site.name} — ${site.role}`,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
     type: "website",
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IZUMI 泉 — Biophilic Bathroom Retrofit",
-    description:
-      "A no-plumbing, countertop water basin inspired by Japanese garden aesthetics.",
+    title: `${site.name} — ${site.role}`,
+    description: site.description,
+    images: [site.ogImage],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f4ef",
+  themeColor: "#faf7f0",
+};
+
+// Person structured data — helps Google/LinkedIn understand the site subject.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  url: site.url,
+  email: `mailto:${site.email}`,
+  sameAs: [site.social.linkedin],
 };
 
 export default function RootLayout({
@@ -56,8 +75,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${notoSerifJp.variable}`}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+      <body className="font-sans">
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </body>
     </html>
   );
 }

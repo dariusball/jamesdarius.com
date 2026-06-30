@@ -1,8 +1,8 @@
 {
-  "name": "izumi-landing",
+  "name": "jamesdariusball-site",
   "version": "1.0.0",
   "private": true,
-  "description": "IZUMI (泉) — marketing landing page for a biophilic bathroom retrofit product.",
+  "description": "Personal site for James Darius Ball — jamesdarius.com. Next.js (App Router) + TypeScript + Tailwind CSS.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,8 +14,7 @@
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "resend": "^3.4.0",
-    "yet-another-react-lightbox": "^3.21.0"
+    "resend": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",

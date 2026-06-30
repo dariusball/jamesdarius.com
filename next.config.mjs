@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
+    // Add remote image hosts here as photography is introduced (e.g. a CDN).
+    remotePatterns: [],
   },
 };
 

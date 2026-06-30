@@ -1,121 +1,122 @@
-# IZUMI 泉 — Biophilic Bathroom Retrofit
+# James Darius Ball — jamesdarius.com
 
-Marketing landing page for **IZUMI (泉)**, a no-plumbing, countertop water
-basin inspired by Japanese garden aesthetics and *wabi-sabi* philosophy.
+Personal site for **James Darius Ball** — Director of Future Cities at the
+National Building Museum; speaker, facilitator, sustainability consultant,
+Zoroastrian, and yoga/meditation mentor.
 
-Built as a single scrolling page: Hero → Concept → Collection (tiers) →
-Gallery → Waitlist.
+A custom replacement for the previous Squarespace site, built to be calm,
+warm, photography-forward, and easy to extend.
+
+## The idea
+
+The landing page is just the name — **James DARIUS Ball** — large and centered.
+Each word is independently interactive (hover on desktop, tap on mobile) and
+navigates to its own destination:
+
+| Word     | Hover/tap reveals…                                            | Goes to        |
+| -------- | ------------------------------------------------------------- | -------------- |
+| `James`  | first name & his Dad's middle name — his life story          | `/story`       |
+| `DARIUS` | a Persian king — being Zoroastrian & his perspectives        | `/darius`      |
+| `Ball`   | the shape of planet Earth — his professional work            | `/services`    |
 
 ## Tech stack
 
-- [Next.js 14](https://nextjs.org/) (App Router) + TypeScript
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Framer Motion](https://www.framer.com/motion/) for scroll animations
-- [yet-another-react-lightbox](https://yet-another-react-lightbox.com/) for the gallery
-- [Resend](https://resend.com/) for waitlist email notifications
-- Fonts: **Noto Serif JP** (headings) + **Inter** (body) via `next/font`
-
-## Getting started
-
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Create your local env file
-cp .env.example .env.local
-#    (the app runs fine without filling these in — see "Email" below)
-
-# 3. Start the dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-### Scripts
-
-| Command         | Description                       |
-| --------------- | --------------------------------- |
-| `npm run dev`   | Start the dev server              |
-| `npm run build` | Production build                  |
-| `npm run start` | Run the production build          |
-| `npm run lint`  | Lint with ESLint / Next.js config |
-
-## Environment variables
-
-All variables are optional for local development. See `.env.example`.
-
-| Variable                | Required? | Description                                              |
-| ----------------------- | --------- | -------------------------------------------------------- |
-| `RESEND_API_KEY`        | For email | Resend API key from <https://resend.com/api-keys>.       |
-| `WAITLIST_FROM_EMAIL`   | For email | Verified sender, e.g. `IZUMI <waitlist@yourdomain.com>`. |
-| `WAITLIST_NOTIFY_EMAIL` | For email | Inbox that receives each new signup.                     |
-
-**Email behaviour:** the waitlist form posts to `/api/waitlist`. If the three
-Resend variables are **not** set, the route still returns success and logs the
-signup to the server console — so you can demo the full flow without an account.
-Once all three are set, each signup is emailed to `WAITLIST_NOTIFY_EMAIL`.
-
-## Deploying to Vercel
-
-This project deploys to [Vercel](https://vercel.com/) with **zero config**.
-
-1. Push this repository to GitHub.
-2. In Vercel, **Add New → Project** and import the repo.
-3. (Optional) Add the `RESEND_API_KEY` / `WAITLIST_*` environment variables
-   under **Settings → Environment Variables** to enable email.
-4. Deploy. Vercel auto-detects Next.js — no build settings needed.
-
-## Swapping placeholder images
-
-Gallery images are defined in [`components/Gallery.tsx`](components/Gallery.tsx)
-in the `images` array. They currently point at [Unsplash](https://unsplash.com/)
-URLs.
-
-To use your own photos:
-
-1. Drop files into `public/gallery/` (e.g. `public/gallery/basin-01.jpg`).
-2. Update each entry's `src` to the public path (e.g. `/gallery/basin-01.jpg`)
-   and set the correct `width` / `height` (used by the lightbox for sizing).
-
-```ts
-const images: GalleryImage[] = [
-  { src: "/gallery/basin-01.jpg", alt: "Stone basin", width: 1600, height: 1067 },
-  // …
-];
-```
-
-> If you keep remote URLs from a new host, add that hostname to
-> `images.remotePatterns` in [`next.config.mjs`](next.config.mjs).
-
-## Editing content
-
-All copy is hardcoded in components — there is no CMS.
-
-| Section    | File                      |
-| ---------- | ------------------------- |
-| Navigation | `components/Header.tsx`   |
-| Hero       | `components/Hero.tsx`     |
-| Concept    | `components/Concept.tsx`  |
-| Tiers      | `components/Tiers.tsx`    |
-| Gallery    | `components/Gallery.tsx`  |
-| Waitlist   | `components/Waitlist.tsx` |
-| Footer     | `components/Footer.tsx`   |
-
-Product tiers (Wabi, Kurama, Bespoke) live in the `tiers` array in
-`components/Tiers.tsx`. Shared types are in [`types/index.ts`](types/index.ts).
+- **Next.js 14** (App Router) + **TypeScript**
+- **Tailwind CSS** (design tokens centralized in `tailwind.config.ts`)
+- **framer-motion** for subtle reveals
+- **Resend** for the contact form email (optional; degrades gracefully)
+- Deploys cleanly to **Vercel**
 
 ## Project structure
 
 ```
 app/
-  layout.tsx            # fonts, metadata, global shell
-  page.tsx              # composes the sections
-  globals.css           # Tailwind + base styles
-  api/waitlist/route.ts # POST handler for signups
-components/             # one file per section + shared bits
-types/index.ts          # shared TypeScript types
+  layout.tsx          Root layout: fonts (Fraunces + Inter), default SEO, JSON-LD
+  page.tsx            LANDING — minimal name with the NameReveal interaction
+  story/page.tsx      MY STORY — video slot, approved narrative, résumé
+  darius/page.tsx     DARIUS — perspectives (TODO copy) + filterable content grid
+  services/page.tsx   SERVICES — four offerings + booking extension point
+  contact/page.tsx    CONTACT — form + community extension point
+  api/contact/route.ts  Contact form handler (Resend + honeypot)
+  sitemap.ts / robots.ts  SEO
+  globals.css
+
+components/
+  NameReveal.tsx      The reusable landing-page word interaction
+  Header.tsx Footer.tsx PageShell.tsx PageHeader.tsx
+  StoryNarrative.tsx ResumeSection.tsx VideoEmbed.tsx
+  ContentGrid.tsx     Filterable/categorized grid (client)
+  ServiceCard.tsx ContactForm.tsx ComingSoon.tsx
+  FadeIn.tsx FlameMark.tsx
+
+content/               ← edit these to update copy without touching layout
+  storyParagraphs.ts  The approved life-story narrative (verbatim)
+  resume.ts           Career history (placeholder TODO bullets)
+  services.ts         The four service offerings (placeholder TODO copy)
+  contentItems.ts     CMS-friendly content entries for the Darius grid
+
+lib/
+  site.ts             Name, URL, email, social, nav — single source of truth
+  seo.ts              Per-page metadata + Open Graph helper
+  extensions.ts       Documented extension points + feature flags
+
+types/index.ts        Shared domain types
+public/og/            Open Graph / social preview images (see README there)
 ```
 
-## License
+### Where to edit what
 
-Placeholder marketing content for demonstration purposes.
+- **Copy** lives in `content/*` and `lib/site.ts` — not in components.
+- **Colors / fonts / spacing** live in `tailwind.config.ts`.
+- **Add a content item** (article, talk, media, video): append to
+  `content/contentItems.ts`. It appears in the grid automatically; videos with
+  an `embedUrl` render an inline player.
+- **Add the story video**: pass an embed URL to `<VideoEmbed src="…" />` in
+  `app/story/page.tsx`.
+
+## Local setup
+
+Requires Node 18+.
+
+```bash
+npm install
+cp .env.example .env.local   # optional — only needed for real email delivery
+npm run dev                  # http://localhost:3000
+```
+
+Other scripts: `npm run build`, `npm run start`, `npm run lint`.
+
+### Environment variables
+
+All optional for local dev (the contact form logs to the console if email isn't
+configured). See `.env.example` for the full list:
+
+- `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_NOTIFY_EMAIL` — contact email
+- `NEXT_PUBLIC_FEATURE_PAYMENTS`, `NEXT_PUBLIC_FEATURE_COMMUNITY` — feature flags
+
+## Deploying to Vercel
+
+1. Push this repo to GitHub (see below).
+2. In Vercel, **New Project → Import** the GitHub repo. Framework preset:
+   **Next.js** (auto-detected). No build config changes needed.
+3. Add the environment variables from `.env.example` under **Settings → Environment
+   Variables** (only needed for live contact-form email).
+4. Deploy, then point `jamesdarius.com` at the project under **Settings → Domains**.
+
+## Future extension points (intentionally not built yet)
+
+- **Payments / booking** — paid consulting/session booking. Scaffolded in
+  `lib/extensions.ts`; a placeholder card sits on the Services page behind the
+  `NEXT_PUBLIC_FEATURE_PAYMENTS` flag.
+- **Community** — a members/movement space. Scaffolded the same way behind
+  `NEXT_PUBLIC_FEATURE_COMMUNITY`, with a placeholder on the Contact page.
+
+## Content still to finalize
+
+Search the repo for `TODO` to find placeholders awaiting real copy:
+
+- Résumé bullets (`content/resume.ts`)
+- Darius page perspectives / Zoroastrian narrative (`app/darius/page.tsx`)
+- Service descriptions (`content/services.ts`)
+- Real content-grid entries (`content/contentItems.ts`)
+- The story video, and a 1200×630 OG image (`public/og/`)

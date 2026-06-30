@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: #f6f4ef;
-    --foreground: #3c3933;
+    --background: #faf7f0; /* ivory */
+    --foreground: #241f19; /* sand-900 */
   }
 
   html {
@@ -19,7 +19,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Reduce motion for users who prefer it. */
+  /* Respect users who prefer reduced motion. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -37,11 +37,16 @@
 @layer components {
   /* Thin, low-contrast section separator — keeps the page airy. */
   .hairline {
-    @apply border-t border-stone-200;
+    @apply border-t border-sand-200;
   }
 
   /* Shared horizontal rhythm for section content. */
   .container-x {
     @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Narrow column for long-form reading copy. */
+  .container-prose {
+    @apply mx-auto w-full max-w-prose px-6 sm:px-8;
   }
 }
