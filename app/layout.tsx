@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import {
+  Inter,
+  Fraunces,
+  Caveat,
+  Playfair_Display,
+  Baloo_2,
+} from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -10,13 +16,37 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Warm, characterful display serif for the name + headings.
+// Warm, characterful display serif for headings throughout the site.
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-fraunces",
+});
+
+// ── Landing-page name fonts — one distinct face per word ──────────────────────
+// "James"  → handwritten
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-caveat",
+});
+// "DARIUS" → elegant
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-playfair",
+});
+// "Ball"   → bubble letters
+const baloo = Baloo_2({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+  variable: "--font-baloo",
 });
 
 export const metadata: Metadata = {
@@ -75,7 +105,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable} ${caveat.variable} ${playfair.variable} ${baloo.variable}`}
+    >
       <body className="font-sans">
         {children}
         <script

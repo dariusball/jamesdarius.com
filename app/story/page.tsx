@@ -35,12 +35,12 @@ export default function StoryPage() {
         lead="A charmed childhood, a winding path through design and sustainability, and a question I keep returning to — how do we build a world where people thrive?"
       />
 
-      {/* Video slot — placeholder until the recording is added. To go live,
-          pass an embed URL: <VideoEmbed src="https://www.youtube.com/embed/..." />. */}
+      {/* Video slot. Source: https://www.youtube.com/watch?v=HZQQnCjvVaY&t=10s
+          (embed form, starting at 0:10). */}
       <div className="container-x mt-4">
         <VideoEmbed
+          src="https://www.youtube.com/embed/HZQQnCjvVaY?start=10"
           title="James Darius Ball — My Story"
-          placeholderLabel="Personal video coming soon"
         />
       </div>
 
