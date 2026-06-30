@@ -19,8 +19,8 @@ export const site = {
   // Update to the production domain before launch.
   url: "https://jamesdarius.com",
 
-  // Primary contact address (used by mailto fallbacks + footer).
-  email: "hello@jamesdarius.com",
+  // Primary contact address (used by the contact form + mailto + footer).
+  email: "dariusball@gmail.com",
 
   // Social / professional links. LinkedIn is the primary traffic driver.
   social: {

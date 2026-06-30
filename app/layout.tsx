@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import {
   Inter,
   Fraunces,
-  Caveat,
-  Playfair_Display,
+  Homemade_Apple,
+  Cinzel_Decorative,
   Baloo_2,
 } from "next/font/google";
 import "./globals.css";
@@ -26,27 +26,26 @@ const fraunces = Fraunces({
 });
 
 // ── Landing-page name fonts — one distinct face per word ──────────────────────
-// "James"  → handwritten
-const caveat = Caveat({
+// "James"  → authentic handwriting (a real-pen cursive)
+const homemadeApple = Homemade_Apple({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400"],
   display: "swap",
-  variable: "--font-caveat",
+  variable: "--font-hand",
 });
-// "DARIUS" → elegant
-const playfair = Playfair_Display({
+// "DARIUS" → decorative, regal Roman capitals
+const cinzelDecorative = Cinzel_Decorative({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  style: ["normal", "italic"],
+  weight: ["400", "700", "900"],
   display: "swap",
-  variable: "--font-playfair",
+  variable: "--font-decorative",
 });
-// "Ball"   → bubble letters
+// "Ball"   → bubble letters (rendered as outline only via .text-outline)
 const baloo = Baloo_2({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   display: "swap",
-  variable: "--font-baloo",
+  variable: "--font-bubble",
 });
 
 export const metadata: Metadata = {
@@ -107,7 +106,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${caveat.variable} ${playfair.variable} ${baloo.variable}`}
+      className={`${inter.variable} ${fraunces.variable} ${homemadeApple.variable} ${cinzelDecorative.variable} ${baloo.variable}`}
     >
       <body className="font-sans">
         {children}

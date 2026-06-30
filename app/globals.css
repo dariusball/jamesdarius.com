@@ -50,3 +50,35 @@
     @apply mx-auto w-full max-w-prose px-6 sm:px-8;
   }
 }
+
+@layer utilities {
+  /* Outline-only "bubble" letters.
+     We can't use -webkit-text-stroke here: bubble fonts (Baloo) are built from
+     overlapping sub-paths, so stroking reveals ugly internal seams. Instead we
+     fill the glyph with the page background colour (so the fill disappears) and
+     ring it with text-shadows — which trace the clean filled silhouette. The
+     `--o` variable sets outline thickness and scales up on larger screens. */
+  .text-outline {
+    --o: 2.5px;
+    color: #faf7f0; /* ivory — matches the cover background, hides the fill */
+    text-shadow:
+      var(--o) 0 0 #241f19,
+      calc(var(--o) * -1) 0 0 #241f19,
+      0 var(--o) 0 #241f19,
+      0 calc(var(--o) * -1) 0 #241f19,
+      calc(var(--o) * 0.7) calc(var(--o) * 0.7) 0 #241f19,
+      calc(var(--o) * -0.7) calc(var(--o) * 0.7) 0 #241f19,
+      calc(var(--o) * 0.7) calc(var(--o) * -0.7) 0 #241f19,
+      calc(var(--o) * -0.7) calc(var(--o) * -0.7) 0 #241f19;
+  }
+  @media (min-width: 640px) {
+    .text-outline {
+      --o: 3px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-outline {
+      --o: 4px;
+    }
+  }
+}

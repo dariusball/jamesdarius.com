@@ -74,9 +74,9 @@ const config: Config = {
         // Clean, modern sans for body + UI.
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         // Landing-page name faces — one per word.
-        hand: ["var(--font-caveat)", "cursive"], // James — handwritten
-        elegant: ["var(--font-playfair)", "Georgia", "serif"], // DARIUS — elegant
-        bubble: ["var(--font-baloo)", "system-ui", "sans-serif"], // Ball — bubble
+        hand: ["var(--font-hand)", "cursive"], // James — handwriting
+        elegant: ["var(--font-decorative)", "Georgia", "serif"], // DARIUS — decorative
+        bubble: ["var(--font-bubble)", "system-ui", "sans-serif"], // Ball — bubble
       },
       letterSpacing: {
         widest2: "0.22em",

@@ -1,4 +1,5 @@
 import { resume } from "@/content/resume";
+import { site } from "@/lib/site";
 import FadeIn from "./FadeIn";
 
 /**
@@ -19,6 +20,15 @@ export default function ResumeSection() {
           A career spent chasing one question: how do we transform our built
           world to be better for both people and the planet?
         </p>
+        <a
+          href={site.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-lapis-200 bg-lapis-50 px-5 py-2 text-sm font-semibold text-lapis-700 transition-colors hover:border-lapis-300 hover:bg-lapis-100"
+        >
+          View full résumé on LinkedIn
+          <span aria-hidden="true">↗</span>
+        </a>
 
         <ol className="mt-12 space-y-10">
           {resume.map((entry) => (
