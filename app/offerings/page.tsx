@@ -3,10 +3,8 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import PageHeader from "@/components/PageHeader";
 import ServiceCard from "@/components/ServiceCard";
-import ComingSoon from "@/components/ComingSoon";
 import FadeIn from "@/components/FadeIn";
 import { services } from "@/content/services";
-import { features } from "@/lib/extensions";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -19,8 +17,7 @@ export const metadata: Metadata = pageMetadata({
 /**
  * Offerings — linked from "Ball" on the landing page.
  *
- * Four service offerings as clearly designed cards, plus a placeholder
- * extension point for future booking/payments (see lib/extensions.ts).
+ * Four service offerings as clearly designed cards.
  */
 export default function OfferingsPage() {
   return (
@@ -49,24 +46,7 @@ export default function OfferingsPage() {
         ))}
       </section>
 
-      {/* Future payment / booking extension point. Hidden until the feature
-          flag is enabled (see lib/extensions.ts). */}
-      <section className="container-x mt-16">
-        {features.payments ? (
-          // TODO: Replace with real "Book & pay" flow (Stripe Checkout, etc.).
-          <ComingSoon
-            title="Book a session"
-            description="Booking is now available — wire this block up to checkout."
-          />
-        ) : (
-          <ComingSoon
-            title="Online booking & payments"
-            description="Soon you'll be able to book and pay for consulting and sessions right here. In the meantime, reach out and we'll set it up together."
-          />
-        )}
-      </section>
-
-      <section className="container-x mt-12 text-center">
+      <section className="container-x mt-16 text-center">
         <p className="text-sand-600">
           Not sure which fits?{" "}
           <Link

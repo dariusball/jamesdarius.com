@@ -32,7 +32,7 @@ export default function HistoryPage() {
             </span>
           </>
         }
-        lead="A charmed childhood, a winding path through design and sustainability, and a question I keep returning to — how do we build a world where people thrive?"
+        lead="A blessed upbringing, a winding road through the building industry, and a core question I keep returning to — how do we build a world where all people thrive?"
       />
 
       {/* Video slot. Source: https://www.youtube.com/watch?v=HZQQnCjvVaY&t=10s

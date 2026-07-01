@@ -159,10 +159,17 @@ export const education: ResumeEducation[] = [
 export const awards: ResumeAward[] = [
   { text: "DC's Building Innovation Hub Advisory Board", year: "Present" },
   {
-    text: "Chair, Net Zero Energy Coalition: National Capital Region",
+    text: "Subcommittee Co-Chair, ULI Washington Collaborative Economic Development Council",
     year: "Present",
   },
-  { text: "Member, Hyattsville Environmental Committee", year: "Present" },
+  {
+    text: "Chair, Net Zero Energy Coalition: National Capital Region",
+    year: "2018 – 2024",
+  },
+  {
+    text: "Member, Hyattsville Environmental Committee",
+    year: "2022 – 2024",
+  },
   {
     text: "DC Building Industry Association Liaison to DC's DOEE",
     year: "2022",
