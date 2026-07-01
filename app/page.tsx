@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import NameReveal from "@/components/NameReveal";
 import { site } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
@@ -42,7 +41,7 @@ export default function HomePage() {
           word="James"
           subtitle="James, also my Dad's middle name, click for more of my life story."
           href="/history"
-          wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem] -translate-x-[22%]"
+          wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem] -translate-x-[34%] translate-y-[14%]"
         />
         {/* "DARIUS" — decorative, regal capitals in Persian lapis */}
         <NameReveal
@@ -60,15 +59,10 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Quiet footer affordance — present but unobtrusive. */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-        <Link
-          href="/contact"
-          className="text-sm font-medium text-sand-500 underline-offset-4 transition-colors hover:text-ember-600 hover:underline"
-        >
-          Be in touch
-        </Link>
-      </div>
+      {/* Light hint that the names are interactive. */}
+      <p className="mt-10 text-center font-display text-lg font-light italic text-sand-400 sm:mt-12">
+        click a name to reveal more…
+      </p>
     </main>
   );
 }
