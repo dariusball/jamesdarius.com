@@ -18,17 +18,9 @@ export const metadata: Metadata = pageMetadata({
  */
 export default function HomePage() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20">
-      {/* Warm cover: a faint ember glow instead of a hero image — calm and
-          confident, not stark. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 50% 40%, rgba(217,142,43,0.12), rgba(250,247,240,0) 70%)",
-        }}
-      />
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-ivory px-4 py-20">
+      {/* Uniform ivory cover — kept flat so the revealed text's ivory backing
+          blends seamlessly into the page background. */}
 
       <h1 className="sr-only">
         {site.firstName} {site.middleName} {site.lastName} — {site.role}
