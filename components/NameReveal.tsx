@@ -43,10 +43,19 @@ export default function NameReveal({
   // Tracks the most recent pointer type so onClick can tell touch from mouse.
   const lastPointer = useRef<string>("mouse");
 
-  // The revealed copy opens with the name ("James, …"); bold that leading word.
+  // Split the revealed copy into three parts:
+  //   • leadWord  — the name ("Darius"), shown bold
+  //   • descTail  — the description (", also a Persian King")
+  //   • cta       — the "click for more…" call to action, on its own line
   const commaIndex = subtitle.indexOf(",");
+  const clickIndex = subtitle.toLowerCase().indexOf("click");
   const leadWord = commaIndex >= 0 ? subtitle.slice(0, commaIndex) : subtitle;
-  const restOfSubtitle = commaIndex >= 0 ? subtitle.slice(commaIndex) : "";
+  const descStart = commaIndex >= 0 ? commaIndex : 0;
+  const descTail =
+    clickIndex >= 0
+      ? subtitle.slice(descStart, clickIndex).replace(/[,\s]+$/, "")
+      : subtitle.slice(descStart);
+  const cta = clickIndex >= 0 ? subtitle.slice(clickIndex).trim() : "";
 
   function handleClick(e: React.MouseEvent) {
     // On touch, the first tap reveals instead of navigating.
@@ -66,10 +75,13 @@ export default function NameReveal({
       onBlur={() => setRevealed(false)}
       onClick={handleClick}
       aria-label={subtitle}
-      className="group block rounded-sm text-center outline-none focus-visible:ring-2 focus-visible:ring-ember-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ivory"
+      className={`group block rounded-sm text-center outline-none focus-visible:ring-2 focus-visible:ring-ember-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ivory ${
+        revealed ? "relative z-20" : ""
+      }`}
     >
-      {/* Both layers share one grid cell so the text appears exactly where the
-          word was — a true in-place swap with no reserved extra height. */}
+      {/* Word and revealed text share one grid cell so the text appears exactly
+          where the word was. Both are in flow (no absolute positioning) so the
+          link box always matches the word and hover never leaks to a neighbour. */}
       <span className="grid place-items-center">
         {/* The word */}
         <span
@@ -81,15 +93,23 @@ export default function NameReveal({
           {word}
         </span>
 
-        {/* Its text, revealed in place — kept short so it fits the word height. */}
+        {/* Its text, revealed in place. The opaque ivory backing masks any
+            neighbouring glyphs behind it so the copy never runs into them. */}
         <span
           aria-hidden="true"
-          className={`col-start-1 row-start-1 mx-auto max-w-md px-4 font-display text-base font-medium leading-snug text-sand-800 transition-opacity duration-300 sm:text-lg ${
+          className={`col-start-1 row-start-1 mx-auto w-max max-w-[min(90vw,26rem)] rounded-2xl bg-ivory px-6 py-3 font-display text-base font-medium leading-snug text-sand-800 transition-opacity duration-300 sm:text-lg ${
             revealed ? "opacity-100" : "opacity-0"
           }`}
         >
-          <span className="font-bold text-sand-900">{leadWord}</span>
-          {restOfSubtitle}
+          <span className="block">
+            <span className="font-bold text-sand-900">{leadWord}</span>
+            {descTail}
+          </span>
+          {cta ? (
+            <span className="mt-2 block font-semibold text-ember-700 underline decoration-ember-300 decoration-2 underline-offset-4">
+              {cta}
+            </span>
+          ) : null}
         </span>
       </span>
     </Link>
