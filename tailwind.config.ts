@@ -23,6 +23,9 @@ const config: Config = {
         // Warm off-white ground ("parchment").
         ivory: "#faf7f0",
 
+        // Cream that matches the name-artwork background (landing cover).
+        paper: "#f3ede8",
+
         // Warm neutral scale — used for text, borders, muted surfaces.
         sand: {
           50: "#f8f5ee",

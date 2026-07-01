@@ -31,13 +31,23 @@ export default function NameReveal({
   word,
   subtitle,
   href,
-  /** Per-word font + size classes (e.g. handwriting / decorative / bubble). */
+  /** Per-word font + size classes (used when rendering the word as text). */
   wordClassName = "",
+  /** Optional artwork for the word; when set, it replaces the text word. */
+  image,
+  imageWidth,
+  imageHeight,
+  /** Sizing classes for the artwork (e.g. width). */
+  imageClassName = "",
 }: {
   word: string;
   subtitle: string;
   href: string;
   wordClassName?: string;
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageClassName?: string;
 }) {
   const [revealed, setRevealed] = useState(false);
   // Tracks the most recent pointer type so onClick can tell touch from mouse.
@@ -75,29 +85,44 @@ export default function NameReveal({
       onBlur={() => setRevealed(false)}
       onClick={handleClick}
       aria-label={subtitle}
-      className={`group block rounded-sm text-center outline-none focus-visible:ring-2 focus-visible:ring-ember-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ivory ${
+      className={`group block rounded-sm text-center outline-none focus-visible:ring-2 focus-visible:ring-ember-400 focus-visible:ring-offset-4 focus-visible:ring-offset-paper ${
         revealed ? "relative z-20" : ""
       }`}
     >
-      {/* Word and revealed text share one grid cell so the text appears exactly
-          where the word was. Both are in flow (no absolute positioning) so the
-          link box always matches the word and hover never leaks to a neighbour. */}
+      {/* Word (text or artwork) and revealed text share one grid cell so the
+          text appears exactly where the word was. Both are in flow (no absolute
+          positioning) so the link box always matches the word and hover never
+          leaks to a neighbour. */}
       <span className="grid place-items-center">
-        {/* The word */}
-        <span
-          aria-hidden="true"
-          className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.84] transition-opacity duration-300 ${wordClassName} ${
-            revealed ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          {word}
-        </span>
+        {/* The word — artwork if provided, otherwise styled text. */}
+        {image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={image}
+            alt=""
+            aria-hidden="true"
+            width={imageWidth}
+            height={imageHeight}
+            className={`col-start-1 row-start-1 h-auto transition-opacity duration-300 ${imageClassName} ${
+              revealed ? "opacity-0" : "opacity-100"
+            }`}
+          />
+        ) : (
+          <span
+            aria-hidden="true"
+            className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.84] transition-opacity duration-300 ${wordClassName} ${
+              revealed ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            {word}
+          </span>
+        )}
 
-        {/* Its text, revealed in place. The opaque ivory backing masks any
-            neighbouring glyphs behind it so the copy never runs into them. */}
+        {/* Its text, revealed in place. The opaque cream backing matches the
+            cover so it blends in and masks any artwork behind it. */}
         <span
           aria-hidden="true"
-          className={`col-start-1 row-start-1 mx-auto w-max max-w-[min(90vw,26rem)] rounded-2xl bg-ivory px-6 py-3 font-display text-base font-medium leading-snug text-sand-800 transition-opacity duration-300 sm:text-lg ${
+          className={`col-start-1 row-start-1 mx-auto w-max max-w-[min(90vw,26rem)] rounded-2xl bg-paper px-6 py-3 font-display text-base font-medium leading-snug text-sand-800 transition-opacity duration-300 sm:text-lg ${
             revealed ? "opacity-100" : "opacity-0"
           }`}
         >
