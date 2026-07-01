@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { nav } from "@/lib/site";
 import FlameMark from "./FlameMark";
 
 /**
- * Site header for the interior (non-landing) pages. The landing page is kept
- * deliberately chrome-free, so it does NOT render this. Here a quiet wordmark
- * links home and the four destinations sit to the right.
+ * Site header for the interior (non-landing) pages. Kept deliberately clean:
+ * the full name is NOT repeated here (it lives on the landing page). A small
+ * flame mark links home, and the four destinations sit to the right.
  */
 export default function Header() {
   return (
@@ -13,12 +13,10 @@ export default function Header() {
       <div className="container-x flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 font-display text-lg font-semibold tracking-tight text-sand-900"
+          aria-label="Home"
+          className="inline-flex items-center rounded-sm text-ember-500 transition-colors hover:text-ember-600"
         >
-          <FlameMark className="h-5 w-5 text-ember-500" />
-          <span>
-            James <span className="text-ember-600">Darius</span> Ball
-          </span>
+          <FlameMark className="h-6 w-6" />
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-5 sm:gap-7">

@@ -65,7 +65,7 @@ export default function NameReveal({
         {/* The word */}
         <span
           aria-hidden="true"
-          className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.95] text-sand-900 transition-opacity duration-300 ${wordClassName} ${
+          className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.95] transition-opacity duration-300 ${wordClassName} ${
             revealed ? "opacity-0" : "opacity-100"
           }`}
         >

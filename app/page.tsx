@@ -35,27 +35,27 @@ export default function HomePage() {
         {site.firstName} {site.middleName} {site.lastName} — {site.role}
       </h1>
 
-      <div className="flex w-full max-w-5xl flex-col items-center gap-6 sm:gap-8">
-        {/* "James" — authentic handwriting, smaller */}
+      <div className="flex w-full max-w-5xl flex-col items-center gap-1 sm:gap-2">
+        {/* "James" — authentic handwriting, warm ember */}
         <NameReveal
           word="James"
           subtitle="My first name and my Dad's middle name… Click for more of my life story."
-          href="/story"
-          wordClassName="font-hand text-[13vw] sm:text-[9vw] lg:text-[7rem]"
+          href="/history"
+          wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem]"
         />
-        {/* "DARIUS" — decorative, regal capitals */}
+        {/* "DARIUS" — decorative, regal capitals in Persian lapis */}
         <NameReveal
           word="DARIUS"
           subtitle="My middle name and also a Persian king… Click to learn about being a Zoroastrian and other perspectives I have."
-          href="/darius"
-          wordClassName="font-elegant text-[15vw] font-bold sm:text-[11vw] lg:text-[8.5rem]"
+          href="/musings"
+          wordClassName="font-elegant text-lapis-600 text-[15vw] font-bold sm:text-[11vw] lg:text-[8.5rem]"
         />
-        {/* "Ball" — bubble letters, outline only */}
+        {/* "Ball" — bubble letters, outline only, in deep crimson */}
         <NameReveal
           word="Ball"
           subtitle="My last name and also the shape of planet Earth… Click to learn about my professional work."
-          href="/services"
-          wordClassName="font-bubble text-outline text-[22vw] font-extrabold sm:text-[15vw] lg:text-[12rem]"
+          href="/offerings"
+          wordClassName="font-bubble text-outline [--oc:#7d2b1d] text-[22vw] font-extrabold sm:text-[15vw] lg:text-[12rem]"
         />
       </div>
 

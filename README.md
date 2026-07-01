@@ -15,9 +15,9 @@ navigates to its own destination:
 
 | Word     | Hover/tap reveals…                                            | Goes to        |
 | -------- | ------------------------------------------------------------- | -------------- |
-| `James`  | first name & his Dad's middle name — his life story          | `/story`       |
-| `DARIUS` | a Persian king — being Zoroastrian & his perspectives        | `/darius`      |
-| `Ball`   | the shape of planet Earth — his professional work            | `/services`    |
+| `James`  | first name & his Dad's middle name — his life story          | `/history`     |
+| `DARIUS` | a Persian king — being Zoroastrian & his perspectives        | `/musings`     |
+| `Ball`   | the shape of planet Earth — his professional work            | `/offerings`   |
 
 ## Tech stack
 
@@ -33,10 +33,10 @@ navigates to its own destination:
 app/
   layout.tsx          Root layout: fonts (Fraunces + Inter), default SEO, JSON-LD
   page.tsx            LANDING — minimal name with the NameReveal interaction
-  story/page.tsx      MY STORY — video slot, approved narrative, résumé
-  darius/page.tsx     DARIUS — perspectives (TODO copy) + filterable content grid
-  services/page.tsx   SERVICES — four offerings + booking extension point
-  contact/page.tsx    CONTACT — form + community extension point
+  history/page.tsx    HISTORY — personal video, approved narrative, résumé
+  musings/page.tsx    MUSINGS — perspectives (TODO copy) + filterable content grid
+  offerings/page.tsx  OFFERINGS — four offerings + booking extension point
+  contact/page.tsx    CONTACT — form (→ dariusball@gmail.com) + community slot
   api/contact/route.ts  Contact form handler (Resend + honeypot)
   sitemap.ts / robots.ts  SEO
   globals.css
@@ -71,8 +71,8 @@ public/og/            Open Graph / social preview images (see README there)
 - **Add a content item** (article, talk, media, video): append to
   `content/contentItems.ts`. It appears in the grid automatically; videos with
   an `embedUrl` render an inline player.
-- **Add the story video**: pass an embed URL to `<VideoEmbed src="…" />` in
-  `app/story/page.tsx`.
+- **Swap the History video**: pass a different embed URL to `<VideoEmbed src="…" />`
+  in `app/history/page.tsx`.
 
 ## Local setup
 
@@ -115,8 +115,6 @@ configured). See `.env.example` for the full list:
 
 Search the repo for `TODO` to find placeholders awaiting real copy:
 
-- Résumé bullets (`content/resume.ts`)
-- Darius page perspectives / Zoroastrian narrative (`app/darius/page.tsx`)
-- Service descriptions (`content/services.ts`)
-- Real content-grid entries (`content/contentItems.ts`)
-- The story video, and a 1200×630 OG image (`public/og/`)
+- A few résumé roles need exact titles/dates confirmed (`content/resume.ts`)
+- Musings page perspectives / Zoroastrian narrative (`app/musings/page.tsx`)
+- A 1200×630 OG image (`public/og/`)

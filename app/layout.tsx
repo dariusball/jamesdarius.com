@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import {
   Inter,
-  Fraunces,
+  Lora,
   Homemade_Apple,
   Cinzel_Decorative,
   Baloo_2,
@@ -16,13 +16,13 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Warm, characterful display serif for headings throughout the site.
-const fraunces = Fraunces({
+// Clean, warm serif for headings/titles throughout the site.
+const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-fraunces",
+  variable: "--font-display",
 });
 
 // ── Landing-page name fonts — one distinct face per word ──────────────────────
@@ -106,7 +106,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${homemadeApple.variable} ${cinzelDecorative.variable} ${baloo.variable}`}
+      className={`${inter.variable} ${lora.variable} ${homemadeApple.variable} ${cinzelDecorative.variable} ${baloo.variable}`}
     >
       <body className="font-sans">
         {children}

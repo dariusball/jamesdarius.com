@@ -7,23 +7,23 @@ import ResumeSection from "@/components/ResumeSection";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "My Story",
+  title: "History",
   description:
     "From a red brick schoolhouse in West Caldwell to Pratt, Habitat for Humanity, Yale, and the National Building Museum — the life story of James Darius Ball.",
-  path: "/story",
+  path: "/history",
 });
 
 /**
- * My Story — linked from "James" on the landing page.
+ * History — linked from "James" on the landing page.
  *
- * A video slot at the top (to be recorded later), the full approved narrative
- * below it, and a formal résumé section to close.
+ * A personal video at the top, the full approved narrative below it, and a
+ * formal résumé section to close.
  */
-export default function StoryPage() {
+export default function HistoryPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="My Story"
+        eyebrow="History"
         title={
           <>
             James.

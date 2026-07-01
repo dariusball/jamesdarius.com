@@ -10,23 +10,23 @@ import { features } from "@/lib/extensions";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services",
+  title: "Offerings",
   description:
     "Public speaking, facilitation & MC work, sustainability consulting, and yoga & meditation support with James Darius Ball.",
-  path: "/services",
+  path: "/offerings",
 });
 
 /**
- * Services — linked from "Ball" on the landing page.
+ * Offerings — linked from "Ball" on the landing page.
  *
  * Four service offerings as clearly designed cards, plus a placeholder
  * extension point for future booking/payments (see lib/extensions.ts).
  */
-export default function ServicesPage() {
+export default function OfferingsPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Services"
+        eyebrow="Offerings"
         title={
           <>
             Ball.

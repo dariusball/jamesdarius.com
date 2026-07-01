@@ -34,8 +34,8 @@ export const site = {
 
 /** Primary navigation — the three destination pages plus contact. */
 export const nav = [
-  { label: "My Story", href: "/story" },
-  { label: "Darius", href: "/darius" },
-  { label: "Services", href: "/services" },
+  { label: "History", href: "/history" },
+  { label: "Musings", href: "/musings" },
+  { label: "Offerings", href: "/offerings" },
   { label: "Contact", href: "/contact" },
 ] as const;

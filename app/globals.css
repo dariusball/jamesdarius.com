@@ -60,16 +60,17 @@
      `--o` variable sets outline thickness and scales up on larger screens. */
   .text-outline {
     --o: 2.5px;
+    --oc: #241f19; /* outline colour — override with [--oc:#hex] per word */
     color: #faf7f0; /* ivory — matches the cover background, hides the fill */
     text-shadow:
-      var(--o) 0 0 #241f19,
-      calc(var(--o) * -1) 0 0 #241f19,
-      0 var(--o) 0 #241f19,
-      0 calc(var(--o) * -1) 0 #241f19,
-      calc(var(--o) * 0.7) calc(var(--o) * 0.7) 0 #241f19,
-      calc(var(--o) * -0.7) calc(var(--o) * 0.7) 0 #241f19,
-      calc(var(--o) * 0.7) calc(var(--o) * -0.7) 0 #241f19,
-      calc(var(--o) * -0.7) calc(var(--o) * -0.7) 0 #241f19;
+      var(--o) 0 0 var(--oc),
+      calc(var(--o) * -1) 0 0 var(--oc),
+      0 var(--o) 0 var(--oc),
+      0 calc(var(--o) * -1) 0 var(--oc),
+      calc(var(--o) * 0.7) calc(var(--o) * 0.7) 0 var(--oc),
+      calc(var(--o) * -0.7) calc(var(--o) * 0.7) 0 var(--oc),
+      calc(var(--o) * 0.7) calc(var(--o) * -0.7) 0 var(--oc),
+      calc(var(--o) * -0.7) calc(var(--o) * -0.7) 0 var(--oc);
   }
   @media (min-width: 640px) {
     .text-outline {

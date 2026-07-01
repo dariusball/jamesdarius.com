@@ -35,7 +35,7 @@ export default function ResumeSection() {
             <FadeIn key={entry.id}>
               <li className="grid gap-3 sm:grid-cols-[10rem,1fr] sm:gap-8">
                 <div className="text-sm font-semibold uppercase tracking-wide text-ember-600">
-                  {entry.period}
+                  {entry.period || " "}
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold text-sand-900">

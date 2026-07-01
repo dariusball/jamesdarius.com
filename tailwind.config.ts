@@ -69,8 +69,8 @@ const config: Config = {
         crimson: "#7d2b1d",
       },
       fontFamily: {
-        // Warm, characterful display serif for headings.
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        // Clean, warm serif for headings/titles.
+        display: ["var(--font-display)", "Georgia", "serif"],
         // Clean, modern sans for body + UI.
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         // Landing-page name faces — one per word.

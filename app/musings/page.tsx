@@ -8,14 +8,14 @@ import { contentItems } from "@/content/contentItems";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Darius",
+  title: "Musings",
   description:
     "On being Zoroastrian, the perspectives that shape my work, and a collection of my public-facing writing, talks, and media.",
-  path: "/darius",
+  path: "/musings",
 });
 
 /**
- * Darius — linked from "DARIUS" on the landing page.
+ * Musings — linked from "DARIUS" on the landing page.
  *
  * Two halves:
  *  (a) Zoroastrian identity, conversion story, and personal perspectives —
@@ -23,11 +23,11 @@ export const metadata: Metadata = pageMetadata({
  *  (b) A filterable grid of public-facing content (writing, talks, media,
  *      video), sourced from content/contentItems.ts.
  */
-export default function DariusPage() {
+export default function MusingsPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Darius"
+        eyebrow="Musings"
         title={
           <>
             Darius.
