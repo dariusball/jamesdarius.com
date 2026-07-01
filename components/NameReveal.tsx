@@ -43,6 +43,11 @@ export default function NameReveal({
   // Tracks the most recent pointer type so onClick can tell touch from mouse.
   const lastPointer = useRef<string>("mouse");
 
+  // The revealed copy opens with the name ("James, …"); bold that leading word.
+  const commaIndex = subtitle.indexOf(",");
+  const leadWord = commaIndex >= 0 ? subtitle.slice(0, commaIndex) : subtitle;
+  const restOfSubtitle = commaIndex >= 0 ? subtitle.slice(commaIndex) : "";
+
   function handleClick(e: React.MouseEvent) {
     // On touch, the first tap reveals instead of navigating.
     if (lastPointer.current !== "mouse" && !revealed) {
@@ -83,7 +88,8 @@ export default function NameReveal({
             revealed ? "opacity-100" : "opacity-0"
           }`}
         >
-          {subtitle}
+          <span className="font-bold text-sand-900">{leadWord}</span>
+          {restOfSubtitle}
         </span>
       </span>
     </Link>

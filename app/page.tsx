@@ -42,7 +42,7 @@ export default function HomePage() {
           word="James"
           subtitle="James, also my Dad's middle name, click for more of my life story."
           href="/history"
-          wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem]"
+          wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem] -translate-x-[22%]"
         />
         {/* "DARIUS" — decorative, regal capitals in Persian lapis */}
         <NameReveal
