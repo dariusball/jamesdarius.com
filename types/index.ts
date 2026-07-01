@@ -14,20 +14,52 @@ export interface Service {
   highlights: string[];
 }
 
-/** A single résumé / career-history entry on the My Story page. */
+/** A single position (title + dates + accomplishments) held at an employer. */
+export interface ResumePosition {
+  /** Role / title held. */
+  title: string;
+  /** Date range, e.g. "June 2017 – April 2022". */
+  period: string;
+  /** Bullet-point accomplishments. */
+  bullets: string[];
+}
+
+/**
+ * A résumé experience entry — one employer, which may contain multiple
+ * positions held over time (most-recent first).
+ */
 export interface ResumeEntry {
   /** Stable id / DOM key. */
   id: string;
   /** Organization name. */
   organization: string;
-  /** Role / title held. */
-  role: string;
-  /** Date range, e.g. "2009 – 2011". */
-  period: string;
   /** Optional location. */
   location?: string;
-  /** Bullet-point accomplishments (placeholder TODO until finalized). */
-  bullets: string[];
+  /** One or more positions held at this organization. */
+  positions: ResumePosition[];
+}
+
+/** An education credential. */
+export interface ResumeEducation {
+  id: string;
+  school: string;
+  credential: string;
+  year: string;
+  location?: string;
+}
+
+/** A leadership role or award, with the year (or "Present"). */
+export interface ResumeAward {
+  text: string;
+  year: string;
+}
+
+/** A publication or presentation. */
+export interface ResumePublication {
+  title: string;
+  /** Outlet / venue (may be empty). */
+  source?: string;
+  year: string;
 }
 
 /**

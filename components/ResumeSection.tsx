@@ -1,14 +1,19 @@
-import { resume } from "@/content/resume";
+import { experience, education, awards, publications } from "@/content/resume";
 import { site } from "@/lib/site";
 import FadeIn from "./FadeIn";
 
 /**
- * Formal career-history layout. A simple two-column timeline: period on the
- * left, role + organization + bullets on the right. Reads as a clean résumé.
+ * Full résumé: Experience (each employer with one or more positions),
+ * Education, Leadership & Awards, and Publications & Presentations. A clean,
+ * formal two-column timeline that reads like a résumé.
  */
 export default function ResumeSection() {
   return (
-    <section id="resume" aria-labelledby="resume-heading" className="container-x mt-24">
+    <section
+      id="resume"
+      aria-labelledby="resume-heading"
+      className="container-x mt-24"
+    >
       <div className="border-t border-sand-200 pt-12">
         <h2
           id="resume-heading"
@@ -26,38 +31,117 @@ export default function ResumeSection() {
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-lapis-200 bg-lapis-50 px-5 py-2 text-sm font-semibold text-lapis-700 transition-colors hover:border-lapis-300 hover:bg-lapis-100"
         >
-          View full résumé on LinkedIn
+          View on LinkedIn
           <span aria-hidden="true">↗</span>
         </a>
 
-        <ol className="mt-12 space-y-10">
-          {resume.map((entry) => (
+        {/* ── Experience ─────────────────────────────────────────────────── */}
+        <SubHeading>Experience</SubHeading>
+        <ol className="space-y-10">
+          {experience.map((entry) => (
             <FadeIn key={entry.id}>
-              <li className="grid gap-3 sm:grid-cols-[10rem,1fr] sm:gap-8">
-                <div className="text-sm font-semibold uppercase tracking-wide text-ember-600">
-                  {entry.period || " "}
-                </div>
+              <li className="grid gap-3 sm:grid-cols-[12rem,1fr] sm:gap-8">
                 <div>
-                  <h3 className="font-display text-xl font-semibold text-sand-900">
+                  <h4 className="font-display text-xl font-semibold text-sand-900">
                     {entry.organization}
-                  </h3>
-                  <p className="mt-0.5 text-sand-700">
-                    {entry.role}
-                    {entry.location ? (
-                      <span className="text-sand-500"> · {entry.location}</span>
-                    ) : null}
-                  </p>
-                  <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sand-600 marker:text-sand-300">
-                    {entry.bullets.map((bullet, i) => (
-                      <li key={i}>{bullet}</li>
-                    ))}
-                  </ul>
+                  </h4>
+                  {entry.location ? (
+                    <p className="mt-0.5 text-sm text-sand-500">
+                      {entry.location}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="space-y-6">
+                  {entry.positions.map((pos, i) => (
+                    <div key={i}>
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                        <h5 className="font-semibold text-sand-800">
+                          {pos.title}
+                        </h5>
+                        <span className="text-sm font-medium uppercase tracking-wide text-ember-600">
+                          {pos.period}
+                        </span>
+                      </div>
+                      <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sand-600 marker:text-sand-300">
+                        {pos.bullets.map((bullet, j) => (
+                          <li key={j}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </li>
             </FadeIn>
           ))}
         </ol>
+
+        {/* ── Education ──────────────────────────────────────────────────── */}
+        <SubHeading>Education</SubHeading>
+        <ul className="space-y-5">
+          {education.map((ed) => (
+            <li
+              key={ed.id}
+              className="grid gap-1 sm:grid-cols-[12rem,1fr] sm:gap-8"
+            >
+              <div className="text-sm font-medium uppercase tracking-wide text-ember-600">
+                {ed.year}
+              </div>
+              <div>
+                <h4 className="font-display text-lg font-semibold text-sand-900">
+                  {ed.school}
+                </h4>
+                <p className="text-sand-600">{ed.credential}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {/* ── Leadership & Awards ────────────────────────────────────────── */}
+        <SubHeading>Leadership &amp; Awards</SubHeading>
+        <ul className="space-y-3">
+          {awards.map((a, i) => (
+            <li
+              key={i}
+              className="grid gap-1 sm:grid-cols-[12rem,1fr] sm:gap-8"
+            >
+              <div className="text-sm font-medium uppercase tracking-wide text-ember-600">
+                {a.year}
+              </div>
+              <p className="text-sand-700">{a.text}</p>
+            </li>
+          ))}
+        </ul>
+
+        {/* ── Publications & Presentations ───────────────────────────────── */}
+        <SubHeading>Publications &amp; Presentations</SubHeading>
+        <ul className="space-y-3">
+          {publications.map((p, i) => (
+            <li
+              key={i}
+              className="grid gap-1 sm:grid-cols-[12rem,1fr] sm:gap-8"
+            >
+              <div className="text-sm font-medium uppercase tracking-wide text-ember-600">
+                {p.year}
+              </div>
+              <p className="text-sand-700">
+                {p.title}
+                {p.source ? (
+                  <span className="text-sand-500"> · {p.source}</span>
+                ) : null}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
+  );
+}
+
+/** Small internal section label used between résumé blocks. */
+function SubHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mb-8 mt-16 text-xs font-semibold uppercase tracking-widest2 text-sand-500">
+      {children}
+    </h3>
   );
 }
