@@ -35,25 +35,26 @@ export default function HomePage() {
         {site.firstName} {site.middleName} {site.lastName} — {site.role}
       </h1>
 
-      <div className="flex w-full max-w-5xl flex-col items-center gap-1 sm:gap-2">
+      {/* Tight spacing stacks the three words into a single graphic. */}
+      <div className="flex w-full max-w-5xl flex-col items-center gap-0">
         {/* "James" — authentic handwriting, warm ember */}
         <NameReveal
           word="James"
-          subtitle="My first name and my Dad's middle name… Click for more of my life story."
+          subtitle="James, also my Dad's middle name, click for more of my life story."
           href="/history"
           wordClassName="font-hand text-ember-600 text-[13vw] sm:text-[9vw] lg:text-[7rem]"
         />
         {/* "DARIUS" — decorative, regal capitals in Persian lapis */}
         <NameReveal
           word="DARIUS"
-          subtitle="My middle name and also a Persian king… Click to learn about being a Zoroastrian and other perspectives I have."
+          subtitle="Darius, also a Persian King, click for more of my perspectives."
           href="/musings"
           wordClassName="font-elegant text-lapis-600 text-[15vw] font-bold sm:text-[11vw] lg:text-[8.5rem]"
         />
         {/* "Ball" — bubble letters, outline only, in deep crimson */}
         <NameReveal
           word="Ball"
-          subtitle="My last name and also the shape of planet Earth… Click to learn about my professional work."
+          subtitle="Ball, also the shape of the planet I am working to sustain, click for more about my services."
           href="/offerings"
           wordClassName="font-bubble text-outline [--oc:#7d2b1d] text-[22vw] font-extrabold sm:text-[15vw] lg:text-[12rem]"
         />

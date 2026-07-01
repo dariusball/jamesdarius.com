@@ -11,10 +11,14 @@ import Link from "next/link";
  * • Mouse: as soon as the pointer moves over the word it is replaced in place
  *   by its descriptive text; a click navigates to `href`.
  *
- * • Touch: the FIRST tap reveals the text; a SECOND tap navigates. The revealed
- *   text reads "Click for more…" and a "Continue →" cue is shown.
+ * • Touch: the FIRST tap reveals the text; a SECOND tap navigates (the copy
+ *   itself says "click for more…").
  *
  * • Keyboard: focusing reveals; Enter navigates.
+ *
+ * The word and its text share one grid cell, and the text is kept short enough
+ * to fit within the word's height — so the three words can stack tightly like a
+ * single graphic with no layout shift when a word is revealed.
  *
  * Hover detection is per-interaction via Pointer Events (reading `pointerType`)
  * rather than a media query, so a mouse works even on hybrid / touchscreen
@@ -56,35 +60,30 @@ export default function NameReveal({
       onFocus={() => setRevealed(true)}
       onBlur={() => setRevealed(false)}
       onClick={handleClick}
-      aria-label={`${word}. ${subtitle}`}
+      aria-label={subtitle}
       className="group block rounded-sm text-center outline-none focus-visible:ring-2 focus-visible:ring-ember-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ivory"
     >
-      {/* Both layers occupy the same grid cell so the text appears exactly where
-          the word was — a true in-place swap. */}
-      <span className="grid min-h-[24vw] place-items-center sm:min-h-[16vw] lg:min-h-[12rem]">
+      {/* Both layers share one grid cell so the text appears exactly where the
+          word was — a true in-place swap with no reserved extra height. */}
+      <span className="grid place-items-center">
         {/* The word */}
         <span
           aria-hidden="true"
-          className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.95] transition-opacity duration-300 ${wordClassName} ${
+          className={`col-start-1 row-start-1 whitespace-nowrap leading-[0.92] transition-opacity duration-300 ${wordClassName} ${
             revealed ? "opacity-0" : "opacity-100"
           }`}
         >
           {word}
         </span>
 
-        {/* Its text, revealed in place */}
+        {/* Its text, revealed in place — kept short so it fits the word height. */}
         <span
           aria-hidden="true"
-          className={`col-start-1 row-start-1 max-w-xl px-6 transition-opacity duration-300 ${
+          className={`col-start-1 row-start-1 mx-auto max-w-md px-4 font-display text-base font-medium leading-snug text-sand-800 transition-opacity duration-300 sm:text-lg ${
             revealed ? "opacity-100" : "opacity-0"
           }`}
         >
-          <span className="block font-display text-xl font-medium leading-snug text-sand-800 sm:text-2xl">
-            {subtitle}
-          </span>
-          <span className="mt-4 inline-flex items-center gap-1.5 font-sans text-sm font-semibold uppercase tracking-widest2 text-ember-600">
-            Continue <span aria-hidden="true">→</span>
-          </span>
+          {subtitle}
         </span>
       </span>
     </Link>
